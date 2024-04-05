@@ -1,100 +1,33 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_background"
-    tools:context=".MainActivity"
     android:padding="16dp"
-    android:gravity="center">
+    tools:context=".MainActivity"
+    android:background="@drawable/login_background">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/appNameTextView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        >
+        android:text="@string/app_name"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white" />
 
-        <ImageView
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:src="@drawable/ytu"
-            />
-
-        <EditText
-            android:id="@+id/username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/round_corner"
-            android:drawableLeft="@drawable/baseline_person_24"
-            android:drawablePadding="10dp"
-            android:hint="Kullanıcı Adı"
-            android:inputType="text"
-            android:padding="15dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="20sp" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Şifre"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:drawableLeft="@drawable/password"
-            android:drawablePadding="10dp"
-            android:textSize="20sp"
-            android:background="@drawable/round_corner"
-            android:padding="15dp"
-            android:inputType="text"
-            android:id="@+id/password"
-            android:layout_marginTop="15dp" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Giriş Yap"
-            android:textColor="@color/dark_gray"
-            android:backgroundTint="@color/white"
-            android:padding="15dp"
-            android:layout_marginTop="25dp"
-            android:textSize="20sp"
-            android:id="@+id/login_button"
-            />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Hesabınız yok mu?"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:onClick="kayitOlOnClick"
-                android:id="@+id/register_button"
-                android:text="Kayıt Ol"
-                android:textColor="@color/white"
-                android:textSize="22dp"
-                android:textStyle="bold"/>
+    <ImageView
+        android:id="@+id/appLogoImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ytu"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        />
 
 
-        </LinearLayout>
-
-
-    </LinearLayout>
 
 
 </RelativeLayout>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_background"
+    tools:context=".LoginActivity"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:src="@drawable/ytu"
+            />
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:background="@drawable/round_corner"
+            android:drawableLeft="@drawable/baseline_person_24"
+            android:drawablePadding="10dp"
+            android:hint="Kullanıcı Adı"
+            android:inputType="text"
+            android:padding="15dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFD6CCCC"
+            android:textSize="20sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Şifre"
+            android:textColor="@color/white"
+            android:textColorHint="#D6CCCC"
+            android:drawableLeft="@drawable/password"
+            android:drawablePadding="10dp"
+            android:textSize="20sp"
+            android:background="@drawable/round_corner"
+            android:padding="15dp"
+            android:inputType="text"
+            android:id="@+id/password"
+            android:layout_marginTop="15dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:text="Şifremi Unuttum"
+            android:textColor="@color/white"
+            android:textSize="17dp"
+            android:gravity="right"
+            android:id="@+id/forgot_password"
+            android:onClick="forgotPasswordOnClick"
+            />
+
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Giriş Yap"
+            android:textColor="@color/dark_gray"
+            android:backgroundTint="@color/white"
+            android:padding="15dp"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:id="@+id/login_button"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Hesabınız yok mu?"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:onClick="kayitOlOnClick"
+                android:id="@+id/register_button"
+                android:text="Kayıt Ol"
+                android:textColor="@color/white"
+                android:textSize="22dp"
+                android:textStyle="bold"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

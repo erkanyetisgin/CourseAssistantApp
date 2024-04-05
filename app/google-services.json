@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "743408028073",
+    "project_id": "courseassistant-228d6",
+    "storage_bucket": "courseassistant-228d6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743408028073:android:c8c4657990b1f59b5a5cb8",
+        "android_client_info": {
+          "package_name": "com.example.courseassistantapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYum0jamxIo3LT7kBe3a_AsQa6ih-w40k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

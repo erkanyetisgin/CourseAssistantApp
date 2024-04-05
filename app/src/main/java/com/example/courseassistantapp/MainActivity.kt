@@ -1,23 +1,43 @@
 package com.example.courseassistantapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        val registerButton = findViewById<TextView>(R.id.register_button)
+        auth = FirebaseAuth.getInstance()
 
-        registerButton.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
+        if (auth.currentUser != null) {
+            redirectToProfile(auth.currentUser?.email)
+        } else {
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+            finish()
         }
+    }
 
+    private fun redirectToProfile(email: String?) {
+        if (email != null) {
+            val intent = when {
+                email.endsWith("@std.yildiz.edu.tr") -> {
+                    Intent(this, StudentProfileActivity::class.java)
+                }
+                email.endsWith("@yildiz.edu.tr") -> {
+                    Intent(this, InstructorProfileActivity::class.java)
+                }
+                else -> {
+                    Intent(this, AdminProfileActivity::class.java)
+                }
+            }
+            startActivity(intent)
+            finish()
+        }
     }
 }
-
