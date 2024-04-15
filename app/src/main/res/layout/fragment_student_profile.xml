@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".studentProfileFragment"
+    android:background="@color/white"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/student_profile_image"
+                android:layout_width="215dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:src="@drawable/admin" />
+
+            <TextView
+                android:id="@+id/student_profile_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Name"
+                android:textSize="24sp"
+                android:padding="10dp" />
+                />
+
+
+
+            <TextView
+                android:id="@+id/student_profile_id"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="School ID"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/student_profile_dob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Date of Birth"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/student_education_level"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Education Level"
+                android:textSize="18sp" />
+
+
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="horizontal"
+    android:padding="5dp"
+    >
+
+    <ImageButton
+        android:id="@+id/instagram"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="@drawable/instagram"
+        android:layout_marginLeft="70dp"
+        ></ImageButton>
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Instagram"
+        android:id="@+id/student_profile_instagram"
+        >
+
+    </TextView>
+
+    <Button
+        android:id="@+id/add_instagram"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/white"
+        android:text="+"
+        android:textColor="@color/black"
+        android:textSize="20dp"></Button>
+
+
+</LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                >
+
+                <ImageButton
+                    android:id="@+id/whatsapp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/whatsapp"
+                    android:layout_marginLeft="70dp"
+                    ></ImageButton>
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="WhatsApp"
+                    android:id="@+id/student_profile_whatsapp"
+                    >
+
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                >
+
+                <ImageButton
+                    android:id="@+id/student_phonecall"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/phone"
+                    android:layout_marginLeft="70dp"
+                    ></ImageButton>
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Phone"
+                    android:id="@+id/student_profile_phone_number"
+                    >
+
+                </TextView>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                >
+
+                <ImageButton
+                    android:id="@+id/student_email"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/mail50"
+                    android:layout_marginLeft="70dp"
+                    ></ImageButton>
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Mail"
+                    android:id="@+id/student_profile_email"
+                    >
+
+                </TextView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

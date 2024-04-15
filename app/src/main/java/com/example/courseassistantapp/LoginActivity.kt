@@ -61,18 +61,23 @@ class LoginActivity : AppCompatActivity() {
     private fun redirectToProfile(email: String?) {
         if (email != null) {
             val intent = when {
-                email.endsWith("@std.yildiz.edu.tr") -> {
-                    Intent(this, StudentProfileActivity::class.java)
+                email.endsWith("@std.yildiz.edu.tr" ) -> {
+                    Intent(this, StudentAccountActivity::class.java)
                 }
                 email.endsWith("@yildiz.edu.tr") -> {
-                    Intent(this, InstructorProfileActivity::class.java)
+                    Intent(this, InstructorAccountActivity::class.java)
+                }
+                email.contains("admin") -> {
+                    Intent(this, AdminAccountActivity::class.java)
                 }
                 else -> {
-                    Intent(this, AdminProfileActivity::class.java)
+                    Toast.makeText(this, "Geçersiz e-posta formatı.", Toast.LENGTH_SHORT).show()
+                    return
                 }
             }
             startActivity(intent)
             finish()
         }
     }
+
 }

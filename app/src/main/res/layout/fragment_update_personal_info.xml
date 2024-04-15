@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kişisel Bilgileri Güncelle"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
+
+
+    <EditText
+        android:id="@+id/edit_first_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Adınız"
+        android:maxLines="1"
+        android:inputType="text"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/edit_last_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Soyadınız"
+        android:maxLines="1"
+        android:inputType="text"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/edit_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Telefon Numaranız"
+        android:maxLines="1"
+        android:inputType="phone"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/edit_dob"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Doğum Tarihiniz"
+        android:maxLines="1"
+        android:inputType="date"
+        android:layout_marginBottom="8dp"/>
+
+    <Button
+        android:id="@+id/btn_update_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bilgileri Güncelle"
+        android:layout_marginTop="16dp"/>
+
+</LinearLayout>

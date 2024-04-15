@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.courseassistantapp"
-        minSdk = 24
+        minSdk = 23
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -43,12 +43,20 @@ android {
 dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
     implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-firestore")
     implementation ("com.google.firebase:firebase-auth")
+    implementation ("com.google.firebase:firebase-storage")
+    implementation ("com.google.firebase:firebase-database")
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.firebase.firestore.ktx)
+    implementation(libs.firebase.database.ktx)
+    implementation(libs.firebase.storage.ktx)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

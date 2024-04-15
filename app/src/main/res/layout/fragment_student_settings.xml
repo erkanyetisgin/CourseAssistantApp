@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    >
+
+    <ImageView
+        android:id="@+id/profile_picture"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_gravity="center"
+        android:src="@drawable/admin"
+        android:layout_marginBottom="30dp"/>
+
+
+    <Button
+        android:id="@+id/btn_change_image"
+        android:layout_width="213dp"
+        android:layout_height="37dp"
+        android:layout_gravity="center"
+        android:text="Profil Resmini Güncelle" />
+
+
+    <EditText
+        android:layout_marginTop="30dp"
+        android:id="@+id/new_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Yeni E-posta Adresi"
+        android:textColorHint="@color/black"
+        />
+
+
+    <Button
+        android:id="@+id/btn_change_email"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Email Değiştir"
+        android:layout_gravity="center"/>
+
+    <EditText
+        android:id="@+id/new_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="Yeni Şifre"
+        android:textColorHint="@color/black"
+
+        />
+
+    <Button
+        android:id="@+id/btn_change_password"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Şifreyi Değiştir"
+        android:layout_gravity="center"/>
+
+
+
+    <Button
+        android:id="@+id/btn_update_personal_info"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Kişisel Bilgileri Güncelle"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        />
+
+    <Button
+        android:id="@+id/btn_delete_account"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Hesabı Sil"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+
+        />
+
+
+
+
+
+</LinearLayout>

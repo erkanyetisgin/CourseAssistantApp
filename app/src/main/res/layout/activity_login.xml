@@ -25,37 +25,37 @@
             android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
+            android:layout_marginTop="75dp"
             android:background="@drawable/round_corner"
             android:drawableLeft="@drawable/baseline_person_24"
             android:drawablePadding="10dp"
             android:hint="Kullanıcı Adı"
             android:inputType="text"
-            android:padding="15dp"
+            android:padding="10dp"
             android:textColor="#FFFFFF"
             android:textColorHint="#FFD6CCCC"
-            android:textSize="20sp" />
+            android:textSize="15sp" />
 
         <EditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Şifre"
-            android:textColor="@color/white"
-            android:textColorHint="#D6CCCC"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/round_corner"
             android:drawableLeft="@drawable/password"
             android:drawablePadding="10dp"
-            android:textSize="20sp"
-            android:background="@drawable/round_corner"
-            android:padding="15dp"
-            android:inputType="text"
-            android:id="@+id/password"
-            android:layout_marginTop="15dp" />
+            android:hint="Şifre"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="#D6CCCC"
+            android:textSize="15sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="10dp"
             android:text="Şifremi Unuttum"
             android:textColor="@color/white"
             android:textSize="17dp"
@@ -72,7 +72,7 @@
             android:text="Giriş Yap"
             android:textColor="@color/dark_gray"
             android:backgroundTint="@color/white"
-            android:padding="15dp"
+            android:padding="10dp"
             android:layout_marginTop="10dp"
             android:textSize="20sp"
             android:id="@+id/login_button"
@@ -91,7 +91,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Hesabınız yok mu?"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -102,7 +102,7 @@
                 android:id="@+id/register_button"
                 android:text="Kayıt Ol"
                 android:textColor="@color/white"
-                android:textSize="22dp"
+                android:textSize="15dp"
                 android:textStyle="bold"/>
 
 

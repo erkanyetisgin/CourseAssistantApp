@@ -13,27 +13,30 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         auth = FirebaseAuth.getInstance()
-
-        if (auth.currentUser != null) {
-            redirectToProfile(auth.currentUser?.email)
-        } else {
+    if (auth.currentUser != null) {
+          redirectToProfile(auth.currentUser?.email)
+      }
+      else {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
-        }
+     }
     }
 
     private fun redirectToProfile(email: String?) {
         if (email != null) {
             val intent = when {
                 email.endsWith("@std.yildiz.edu.tr") -> {
-                    Intent(this, StudentProfileActivity::class.java)
+                    Intent(this, StudentAccountActivity::class.java)
                 }
                 email.endsWith("@yildiz.edu.tr") -> {
-                    Intent(this, InstructorProfileActivity::class.java)
+                    Intent(this, InstructorAccountActivity::class.java)
+                }
+                email.endsWith("@admin.com") -> {
+                    Intent(this, AdminAccountActivity::class.java)
                 }
                 else -> {
-                    Intent(this, AdminProfileActivity::class.java)
+                    Intent(this, LoginActivity::class.java)
                 }
             }
             startActivity(intent)
