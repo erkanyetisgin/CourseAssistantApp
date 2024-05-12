@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 
-class updatePersonalInfoFragment : Fragment() {
+class studentUpdateInfoFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
     private lateinit var currentUser: FirebaseUser
@@ -22,7 +22,7 @@ class updatePersonalInfoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_update_personal_info, container, false)
+        return inflater.inflate(R.layout.fragment_student_update_info, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,7 +56,7 @@ class updatePersonalInfoFragment : Fragment() {
         phoneEditText: EditText,
         dobEditText: EditText
     ) {
-        db.collection("users").document(currentUser.uid)
+        db.collection("students").document(currentUser.uid)
             .get()
             .addOnSuccessListener { document ->
                 val firstName = document.getString("firstName")
@@ -81,7 +81,7 @@ class updatePersonalInfoFragment : Fragment() {
         newPhone: String,
         newDOB: String
     ) {
-        val userRef = db.collection("users").document(currentUser.uid)
+        val userRef = db.collection("students").document(currentUser.uid)
 
         if (newFirstName.isNotEmpty()) {
             userRef.update("firstName", newFirstName)

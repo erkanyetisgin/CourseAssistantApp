@@ -36,14 +36,6 @@
 
 
 
-            <TextView
-                android:id="@+id/instructor_profile_id"
-                android:padding="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="School ID"
-                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/instructor_profile_dob"
@@ -54,14 +46,7 @@
                 android:text="Date of Birth"
                 android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/instructor_education_level"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="Education Level"
-                android:textSize="18sp" />
+
 
 
 

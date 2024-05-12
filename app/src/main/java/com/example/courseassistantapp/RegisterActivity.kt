@@ -68,10 +68,12 @@ class RegisterActivity : AppCompatActivity() {
                             "email" to email,
                             "date" to dob,
                             "education" to education,
-                            "phone" to phone
+                            "phone" to phone,
+                            "password" to password,
+
 
                         )
-                        db.collection("users").document(user.uid)
+                        db.collection("students").document(user.uid)
                             .set(userData)
                             .addOnSuccessListener {
                                 Toast.makeText(
@@ -97,10 +99,11 @@ class RegisterActivity : AppCompatActivity() {
                             "lastName" to lastName,
                             "email" to email,
                             "date" to dob,
-                            "phone" to phone
+                            "phone" to phone,
+                            "password" to password
 
                         )
-                        db.collection("users").document(user.uid)
+                        db.collection("instructors").document(user.uid)
                             .set(userData)
                             .addOnSuccessListener {
                                 Toast.makeText(

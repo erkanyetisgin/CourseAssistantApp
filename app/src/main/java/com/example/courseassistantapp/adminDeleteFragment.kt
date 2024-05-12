@@ -34,7 +34,55 @@ class adminDeleteFragment : Fragment() {
 
         val listView = view.findViewById<ListView>(R.id.user_list_view)
 
-        db.collection("users")
+        // users parçalandı.artık students ve instructors olarak ayrı ayrı listelenecek.
+        //ilk olarak students listelenecek.
+        // students listesi
+
+        if (userType == "students") {
+            db.collection("students")
+                .get()
+                .addOnSuccessListener { result ->
+                    val students = mutableListOf<String>()
+                    for (document in result) {
+                        val firstName = document.getString("firstName") ?: ""
+                        val lastName = document.getString("lastName") ?: ""
+                        val fullName = "$firstName $lastName"
+                        students.add(fullName)
+                    }
+                    val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, students)
+                    listView.adapter = adapter
+
+                    listView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+                        val selectedStudent = students[position]
+                        showDeleteConfirmationDialog(selectedStudent, "students")
+                    }
+                }
+        }
+
+        // instructors listesi
+        else if (userType == "instructors") {
+            db.collection("instructors")
+                .get()
+                .addOnSuccessListener { result ->
+                    val instructors = mutableListOf<String>()
+                    for (document in result) {
+                        val firstName = document.getString("firstName") ?: ""
+                        val lastName = document.getString("lastName") ?: ""
+                        val fullName = "$firstName $lastName"
+                        instructors.add(fullName)
+                    }
+                    val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, instructors)
+                    listView.adapter = adapter
+
+                    listView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+                        val selectedInstructor = instructors[position]
+                        showDeleteConfirmationDialog(selectedInstructor, "instructors")
+                    }
+                }
+        }
+
+
+  /*      db.collection("users")
             .get()
             .addOnSuccessListener { result ->
                 val users = mutableListOf<String>()
@@ -58,15 +106,15 @@ class adminDeleteFragment : Fragment() {
             }
             .addOnFailureListener { exception ->
                 Toast.makeText(requireContext(), "Kullanıcılar yüklenirken bir hata oluştu: ${exception.message}", Toast.LENGTH_SHORT).show()
-            }
+            } */
     }
 
-    private fun showDeleteConfirmationDialog(userName: String) {
+    private fun showDeleteConfirmationDialog(userName: String, userType: String) {
         val alertDialogBuilder = AlertDialog.Builder(requireContext())
         alertDialogBuilder.setTitle("Kullanıcıyı Sil")
         alertDialogBuilder.setMessage("$userName adlı kullanıcıyı silmek istediğinize emin misiniz?")
         alertDialogBuilder.setPositiveButton("Evet") { _, _ ->
-            deleteUser(userName)
+            deleteUser(userName, userType)
         }
         alertDialogBuilder.setNegativeButton("Hayır") { dialog, _ ->
             dialog.dismiss()
@@ -75,14 +123,14 @@ class adminDeleteFragment : Fragment() {
         alertDialog.show()
     }
 
-    private fun deleteUser(userName: String) {
-        db.collection("users")
+    private fun deleteUser(userName: String, userType: String) {
+       db.collection(userType   )
             .whereEqualTo("firstName", userName.split(" ")[0])
             .whereEqualTo("lastName", userName.split(" ")[1])
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
-                    db.collection("users").document(document.id).delete()
+                    db.collection(userType).document(document.id).delete()
                         .addOnSuccessListener {
                             Toast.makeText(requireContext(), "Kullanıcı başarıyla silindi.", Toast.LENGTH_SHORT).show()
                             val transaction = requireFragmentManager().beginTransaction()

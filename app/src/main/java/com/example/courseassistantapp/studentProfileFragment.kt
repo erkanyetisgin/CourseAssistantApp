@@ -66,7 +66,7 @@ class studentProfileFragment : Fragment() {
         }
 
         val userId = currentUser.uid
-        val userRef = db.collection("users").document(userId)
+        val userRef = db.collection("students").document(userId)
 
         userRef.get()
             .addOnSuccessListener { document ->
@@ -125,7 +125,7 @@ class studentProfileFragment : Fragment() {
             builder.setPositiveButton("Ekle") { dialog, which ->
                 val newUsername = input.text.toString().trim()
                 if (newUsername.isNotEmpty()) {
-                    val userRef = db.collection("users").document(currentUser.uid)
+                    val userRef = db.collection("students").document(currentUser.uid)
                     userRef.update("instagramUsername", newUsername)
                         .addOnSuccessListener {
                             instagramTextView.text = newUsername

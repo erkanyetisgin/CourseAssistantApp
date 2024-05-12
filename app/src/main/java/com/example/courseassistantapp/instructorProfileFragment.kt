@@ -40,9 +40,7 @@ class instructorProfileFragment : Fragment() {
 
         val nameTextView = view.findViewById<TextView>(R.id.instructor_profile_name)
         val emailTextView = view.findViewById<TextView>(R.id.instructor_profile_email)
-        val idTextView = view.findViewById<TextView>(R.id.instructor_profile_id)
         val dobTextView = view.findViewById<TextView>(R.id.instructor_profile_dob)
-        val educationLevelTextView = view.findViewById<TextView>(R.id.instructor_education_level)
         val phoneTextView = view.findViewById<TextView>(R.id.instructor_profile_phone_number)
         val instagramButton = view.findViewById<ImageButton>(R.id.instagram)
         val whatsappButton = view.findViewById<ImageButton>(R.id.whatsapp)
@@ -66,7 +64,7 @@ class instructorProfileFragment : Fragment() {
         }
 
         val userId = currentUser.uid
-        val userRef = db.collection("users").document(userId)
+        val userRef = db.collection("instructors").document(userId)
 
         userRef.get()
             .addOnSuccessListener { document ->
@@ -76,9 +74,7 @@ class instructorProfileFragment : Fragment() {
                     val lastname = user?.get("lastName").toString()
                     nameTextView.text = "$firstname $lastname".uppercase()
                     emailTextView.text = user?.get("email").toString()
-                    idTextView.text = user?.get("instructorId").toString()
                     dobTextView.text = user?.get("date").toString()
-                    educationLevelTextView.text = user?.get("education").toString()
                     phoneTextView.text = user?.get("phone").toString()
                     val instagramUsername: String
                     if (user?.containsKey("instagramUsername") == true) {
@@ -125,7 +121,7 @@ class instructorProfileFragment : Fragment() {
             builder.setPositiveButton("Ekle") { dialog, which ->
                 val newUsername = input.text.toString().trim()
                 if (newUsername.isNotEmpty()) {
-                    val userRef = db.collection("users").document(currentUser.uid)
+                    val userRef = db.collection("instructors").document(currentUser.uid)
                     userRef.update("instagramUsername", newUsername)
                         .addOnSuccessListener {
                             instagramTextView.text = newUsername

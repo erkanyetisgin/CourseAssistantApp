@@ -18,7 +18,7 @@ class adminViewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_admin_delete, container, false)
+        return inflater.inflate(R.layout.fragment_admin_view, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -28,7 +28,7 @@ class adminViewFragment : Fragment() {
 
         val listView = view.findViewById<ListView>(R.id.user_list_view)
 
-        db.collection("users")
+        db.collection(userType)
             .get()
             .addOnSuccessListener { result ->
                 val users = mutableListOf<String>()
@@ -40,9 +40,9 @@ class adminViewFragment : Fragment() {
                     val date = document.getString("date") ?: ""
                     val phone = document.getString("phone") ?: ""
                     val fullName = "$firstName $lastName"
-                    if (userType == "student" && email.endsWith("@std.yildiz.edu.tr")) {
+                    if (userType == "students" && email.endsWith("@std.yildiz.edu.tr")) {
                         users.add("Öğrenci Adı: $fullName\nÖğrenci Numarası: $studentId\nEmail: $email\nDoğum Tarihi: $date\nTelefon: $phone")
-                    } else if (userType == "instructor" && email.endsWith("@yildiz.edu.tr")) {
+                    } else if (userType == "instructors" && email.endsWith("@yildiz.edu.tr")) {
                         users.add("Eğitmen Adı: $fullName\nEmail: $email\nTelefon: $phone\nDoğum Tarihi: $date")
                     }
                 }

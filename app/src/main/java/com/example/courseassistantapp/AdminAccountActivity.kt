@@ -53,16 +53,16 @@ class AdminAccountActivity : AppCompatActivity(), NavigationView.OnNavigationIte
                 })
             }
             R.id.nav_viewstudent -> replaceFragment(adminViewFragment().apply {
-                setUserType("student")
+                setUserType("students")
             })
             R.id.nav_viewinstructor -> replaceFragment(adminViewFragment().apply {
-                setUserType("instructor")
+                setUserType("instructors")
             })
             R.id.nav_deleteinstructor -> replaceFragment(adminDeleteFragment().apply {
-                setUserType("instructor")
+                setUserType("instructors")
             })
             R.id.nav_deletestudent -> replaceFragment(adminDeleteFragment().apply {
-                setUserType("student")
+                setUserType("students")
             })
 
 

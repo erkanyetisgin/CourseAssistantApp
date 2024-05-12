@@ -87,7 +87,7 @@ class instructorSettingsFragment : Fragment() {
         }
 
         personalInfoButton.setOnClickListener {
-            val fragment = updatePersonalInfoFragment()
+            val fragment = instructorUpdateInfoFragment()
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
             transaction.replace(R.id.fragment_container, fragment)
             transaction.addToBackStack(null)

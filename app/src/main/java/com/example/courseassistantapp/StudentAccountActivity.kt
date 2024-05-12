@@ -37,16 +37,16 @@ class StudentAccountActivity : AppCompatActivity(), NavigationView.OnNavigationI
         toggle.syncState()
 
 
-        if (savedInstanceState == null) {
-            replaceFragment(studentProfileFragment())
-            navigationView.setCheckedItem(R.id.nav_profile)
-        }
+        replaceFragment(studentProfileFragment())
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_profile -> replaceFragment(studentProfileFragment())
             R.id.nav_settings -> replaceFragment(studentSettingsFragment())
+            R.id.nav_courses -> replaceFragment(studentCoursesFragment())
+            R.id.nav_register_courses-> replaceFragment(studentRegisterCoursesFragment())
+            R.id.nav_send_report -> replaceFragment(studentSendReport())
             R.id.nav_logout -> {
 
                 FirebaseAuth.getInstance().signOut()

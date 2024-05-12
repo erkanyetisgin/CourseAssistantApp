@@ -14,18 +14,17 @@
             android:icon="@drawable/settings"
             android:title="Ayarlar" />
         <item
-            android:id="@+id/nav_courses"
-            android:icon="@drawable/join"
-            android:title="Derse Katıl" />
+            android:id="@+id/nav_createcourse"
+            android:icon="@drawable/create"
+            android:title="Ders Oluştur" />
         <item
-            android:id="@+id/nav_register_courses"
-            android:icon="@drawable/course"
-            android:title="Kayıtlı Dersler" />
+            android:id="@+id/nav_viewcourse"
+            android:icon="@drawable/detail"
+            android:title="Dersleri Görüntüle" />
         <item
-            android:id="@+id/nav_send_report"
-            android:icon="@drawable/send"
-            android:title="Rapor Gönder" />
-
+            android:id="@+id/nav_viewreport"
+            android:icon="@drawable/detail"
+            android:title="Raporları Görüntüle" />
 
         <item
             android:title="">

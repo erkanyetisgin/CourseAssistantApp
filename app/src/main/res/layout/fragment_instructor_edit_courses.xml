@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kurs Bilgilerini Güncelle"
+        android:textSize="24sp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="40dp"
+        />
+
+    <TextView
+        android:id="@+id/course_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ders ID"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/course_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ders Adı"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/number_of_students"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Katılımcı Sayısı"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/instructor_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Eğitmen Adı"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/start_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Başlangıç Tarihi"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/end_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bitiş Tarihi"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:layout_marginBottom="40sp"/>
+
+    <Button
+        android:id="@+id/view_students"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Öğrencileri Görüntüle"
+        android:layout_marginBottom="16dp"/>
+
+
+    <Button
+        android:id="@+id/button_add_student"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Öğrenci Ekle"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/button_delete_student"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Öğrenci Sil"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/button_update_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Grup Bilgilerini Güncelle"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/button_delete_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Grubu Sil"/>
+
+</LinearLayout>
