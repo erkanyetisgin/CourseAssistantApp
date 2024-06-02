@@ -48,6 +48,7 @@ class InstructorAccountActivity : AppCompatActivity(), NavigationView.OnNavigati
             R.id.nav_createcourse -> replaceFragment(instructorCreateCourseFragment())
             R.id.nav_viewcourse -> replaceFragment(instructorCoursesView())
             R.id.nav_viewreport -> replaceFragment(instructorViewReports())
+            R.id.nav_start_attendance -> replaceFragment(InstructorStartAttendanceFragment())
             R.id.nav_logout -> {
 
                 FirebaseAuth.getInstance().signOut()

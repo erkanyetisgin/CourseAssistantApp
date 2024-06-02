@@ -47,6 +47,7 @@ class StudentAccountActivity : AppCompatActivity(), NavigationView.OnNavigationI
             R.id.nav_courses -> replaceFragment(studentCoursesFragment())
             R.id.nav_register_courses-> replaceFragment(studentRegisterCoursesFragment())
             R.id.nav_send_report -> replaceFragment(studentSendReport())
+            R.id.nav_attendance -> replaceFragment(StudentViewActiveCoursesFragment())
             R.id.nav_logout -> {
 
                 FirebaseAuth.getInstance().signOut()

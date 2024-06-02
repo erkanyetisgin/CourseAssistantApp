@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/active_courses_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Derse Katıl "
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:layout_marginBottom="16dp" />
+
+    <Spinner
+        android:id="@+id/spinner_courses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/attendance_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Katılım durumu"
+        android:textSize="18sp"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btn_check_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Katıl"
+        android:backgroundTint="#25CC25"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_marginBottom="16dp"
+        />
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/map_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+</LinearLayout>

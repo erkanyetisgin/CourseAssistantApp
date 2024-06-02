@@ -16,11 +16,16 @@
         <item
             android:id="@+id/nav_courses"
             android:icon="@drawable/join"
-            android:title="Derse Katıl" />
+            android:title="Ders Kaydı" />
         <item
             android:id="@+id/nav_register_courses"
             android:icon="@drawable/course"
             android:title="Kayıtlı Dersler" />
+        <item
+            android:id="@+id/nav_attendance"
+            android:icon="@drawable/attendance"
+            android:title="Katılım" />
+
         <item
             android:id="@+id/nav_send_report"
             android:icon="@drawable/send"

@@ -72,21 +72,20 @@ class instructorViewReports : Fragment() {
                                 }
 
                                 if (reports.isNotEmpty()) {
-                                    Toast.makeText(requireContext(), "Reports found", Toast.LENGTH_SHORT).show()
                                     recyclerView.adapter = ReportAdapter(reports)
                                 } else {
-                                    Toast.makeText(requireContext(), "No reports found", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(requireContext(), "Rapor bulunamadı", Toast.LENGTH_SHORT).show()
                                 }
                             }
                             .addOnFailureListener { exception ->
-                                Toast.makeText(requireContext(), "Error fetching students: $exception", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(requireContext(), "Raporlar alınırken bir hata oluştu: $exception", Toast.LENGTH_SHORT).show()
                             }
                     } else {
-                        Toast.makeText(requireContext(), "No reports found", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Rapor bulunamadı", Toast.LENGTH_SHORT).show()
                     }
                 }
                 .addOnFailureListener { exception ->
-                    Toast.makeText(requireContext(), "Error fetching reports: $exception", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Raporlar alınırken bir hata oluştu: $exception", Toast.LENGTH_SHORT).show()
                 }
         }
 
