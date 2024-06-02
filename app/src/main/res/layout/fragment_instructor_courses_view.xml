@@ -8,17 +8,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Kayıtlı Olduğunuz Dersler"
+        android:text="Dersleriniz"
         android:textSize="24sp"
         android:layout_gravity="center"
         android:layout_marginBottom="30dp"
         />
-    <TextView
-        android:id="@+id/text_course_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@android:color/black"
-        android:gravity="start"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_courses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

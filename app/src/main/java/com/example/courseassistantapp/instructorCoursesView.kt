@@ -5,15 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
+import com.google.android.gms.tasks.Tasks
+import android.util.Log
 
 class instructorCoursesView : Fragment() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
-    private lateinit var courseListTextView: TextView
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var courseAdapter: CourseAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,7 +28,10 @@ class instructorCoursesView : Fragment() {
         firebaseAuth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 
-        courseListTextView = rootView.findViewById(R.id.text_course_list)
+        recyclerView = rootView.findViewById(R.id.recycler_view_courses)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        courseAdapter = CourseAdapter(emptyList()) { courseId -> navigateToEditCourse(courseId) }
+        recyclerView.adapter = courseAdapter
 
         fetchInstructorCourses()
 
@@ -37,32 +44,28 @@ class instructorCoursesView : Fragment() {
             .whereEqualTo("instructor_id", instructorId)
             .get()
             .addOnSuccessListener { querySnapshot: QuerySnapshot? ->
-                val courseList = StringBuilder()
-                querySnapshot?.forEach { documentSnapshot ->
+                val courseTasks = querySnapshot?.documents?.map { documentSnapshot ->
                     val courseId = documentSnapshot.id
-                    val courseName = documentSnapshot.getString("courseName") ?: ""
-                    val startDate = documentSnapshot.getString("start_date") ?: ""
-                    val endDate = documentSnapshot.getString("end_date") ?: ""
-                    courseList.append("ID: $courseId\n")
-                    courseList.append("Ders Adı: $courseName\n")
-                    courseList.append("Başlangıç Tarihi: $startDate\n")
-                    courseList.append("Bitiş Tarihi: $endDate\n\n")
-                }
-                courseListTextView.text = courseList.toString()
-                if (courseList.isEmpty()) {
-                    courseListTextView.text = "Öğretmenin kayıtlı olduğu ders bulunamadı."
-                }
+                    val courseName = documentSnapshot.getString("courseName") ?: "No Course Name"
+                    val startDate = documentSnapshot.getString("start_date") ?: "No Start Date"
+                    val endDate = documentSnapshot.getString("end_date") ?: "No End Date"
+                    val instructorId = documentSnapshot.getString("instructor_id") ?: "No Instructor"
 
-                courseListTextView.setOnClickListener {
-                    navigateToEditCourse(querySnapshot?.documents?.get(0)?.id ?: "")
-                }
+                    firestore.collection("instructors").document(instructorId).get().continueWith { task ->
+                        val instructorSnapshot = task.result
+                        val instructorName = instructorSnapshot?.getString("firstName") + " " + instructorSnapshot?.getString("lastName")
+                        Course(courseId, courseName, startDate, endDate, instructorName)
+                    }
+                } ?: emptyList()
 
+                Tasks.whenAllSuccess<Course>(courseTasks).addOnSuccessListener { courses ->
+                    courseAdapter.updateCourses(courses)
+                    Log.d("fetchInstructorCourses", "Courses fetched successfully: ${courses.size} courses")
+                }
             }
             .addOnFailureListener { e ->
-                courseListTextView.text = "Error fetching courses: ${e.message}"
+                Log.e("fetchInstructorCourses", "Error fetching courses", e)
             }
-
-
     }
 
     private fun navigateToEditCourse(courseId: String) {
@@ -75,4 +78,5 @@ class instructorCoursesView : Fragment() {
             .addToBackStack(null)
             .commit()
     }
+
 }

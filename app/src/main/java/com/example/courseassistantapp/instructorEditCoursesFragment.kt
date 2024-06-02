@@ -26,7 +26,6 @@ class instructorEditCoursesFragment : Fragment() {
     private lateinit var instructorNameTextView: TextView
     private lateinit var numStudentsTextView: TextView
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,8 +48,6 @@ class instructorEditCoursesFragment : Fragment() {
         val deleteGroupButton = rootView.findViewById<Button>(R.id.button_delete_group)
 
         fetchCourseInfo()
-
-
 
         viewStudentsButton.setOnClickListener {
             val groupId = courseIdTextView.text.toString().substringAfter("ID: ").trim()
@@ -251,52 +248,51 @@ class instructorEditCoursesFragment : Fragment() {
                 .show()
         }
 
-
-
         return rootView
     }
 
     private fun fetchCourseInfo() {
-        val instructorId = firebaseAuth.currentUser?.uid
-        if (instructorId != null) {
-            firestore.collection("course_groups")
-                .whereEqualTo("instructor_id", instructorId)
-                .get()
-                .addOnSuccessListener { documents ->
-                    if (!documents.isEmpty) {
-                        val courseGroup = documents.documents[0]
-                        val courseId = courseGroup.id
-                        val groupName = courseGroup.getString("courseName")
-                        val numStudents = courseGroup.getLong("number_of_students")
-                        val startDate = courseGroup.getString("start_date")
-                        val endDate = courseGroup.getString("end_date")
+        val courseId = arguments?.getString("courseId") ?: return
 
-                        if (instructorId != null) {
-                            firestore.collection("instructors")
-                                .document(instructorId)
-                                .get()
-                                .addOnSuccessListener { document ->
-                                    val instructorName = document.getString("firstName") + " " + document.getString("lastName")
-                                    instructorNameTextView.text = "Öğretmen Adı: $instructorName"
-                                }
-                                .addOnFailureListener { exception ->
-                                    Toast.makeText(requireContext(), "Hata: $exception", Toast.LENGTH_SHORT).show()
-                                }
-                        }
+        firestore.collection("course_groups")
+            .document(courseId)
+            .get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val courseId = document.id
+                    val groupName = document.getString("courseName")
+                    val numStudents = document.getLong("number_of_students")
+                    val startDate = document.getString("start_date")
+                    val endDate = document.getString("end_date")
+                    val instructorId = document.getString("instructor_id")
 
-                        courseIdTextView.text = "ID: $courseId"
-                        courseNameTextView.text = "Ders Adı: $groupName"
-                        startDateTextView.text = "Başlangıç Tarihi: $startDate"
-                        endDateTextView.text = "Bitiş Tarihi: $endDate"
-                        numStudentsTextView.text = "Öğrenci Sayısı: $numStudents"
+                    if (instructorId != null) {
+                        firestore.collection("instructors")
+                            .document(instructorId)
+                            .get()
+                            .addOnSuccessListener { instructorDocument ->
+                                val instructorName = "${instructorDocument.getString("firstName")} ${instructorDocument.getString("lastName")}"
+                                instructorNameTextView.text = "Öğretmen Adı: $instructorName"
+                            }
+                            .addOnFailureListener { exception ->
+                                Toast.makeText(requireContext(), "Hata: $exception", Toast.LENGTH_SHORT).show()
+                            }
                     }
-                }
-                .addOnFailureListener { exception ->
-                    Toast.makeText(requireContext(), "Hata: $exception", Toast.LENGTH_SHORT).show()
-                }
-        }
 
+                    courseIdTextView.text = "ID: $courseId"
+                    courseNameTextView.text = "Ders Adı: $groupName"
+                    startDateTextView.text = "Başlangıç Tarihi: $startDate"
+                    endDateTextView.text = "Bitiş Tarihi: $endDate"
+                    numStudentsTextView.text = "Öğrenci Sayısı: $numStudents"
+                } else {
+                    Toast.makeText(requireContext(), "Kurs bulunamadı", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(requireContext(), "Hata: $exception", Toast.LENGTH_SHORT).show()
+            }
     }
+
 
     private fun showStudentListDialog(studentList: List<String>, action: String) {
         val studentArray = studentList.toTypedArray()
