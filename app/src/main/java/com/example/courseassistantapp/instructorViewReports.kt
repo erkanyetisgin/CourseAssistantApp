@@ -54,14 +54,14 @@ class instructorViewReports : Fragment() {
                             .whereIn(FieldPath.documentId(), studentIds.toList())
                             .get()
                             .addOnSuccessListener { studentQuerySnapshot ->
-                                val studentMap = studentQuerySnapshot.documents.associateBy({ it.id }, { "${it.getString("firstName")} ${it.getString("lastName")}" })
+                                val studentMap = studentQuerySnapshot.documents.associateBy({ it.id }, { it.getString("email") })
 
                                 for (documentSnapshot in querySnapshot.documents) {
                                     val studentId = documentSnapshot.getString("student_id") ?: ""
-                                    val studentName = studentMap[studentId] ?: "Unknown Student"
+                                    val studentEmail = studentMap[studentId] ?: "Unknown Student"
                                     val report = Report(
                                         id = documentSnapshot.id,
-                                        senderName = "Gönderen: $studentName",
+                                        senderName = "Gönderen: $studentEmail",
                                         instructorId = documentSnapshot.getString("instructor_id") ?: "",
                                         scope = "Kapsam: ${documentSnapshot.getString("scope")}",
                                         subject = "Konu: ${documentSnapshot.getString("subject")}",
@@ -92,6 +92,7 @@ class instructorViewReports : Fragment() {
 
         return rootView
     }
+
 
     class ReportAdapter(private val reports: List<Report>) : RecyclerView.Adapter<ReportAdapter.ViewHolder>() {
 

@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.io.ByteArrayOutputStream
 
@@ -99,15 +100,26 @@ class instructorSettingsFragment : Fragment() {
             val newEmail = emailEditText.text.toString()
             val user = FirebaseAuth.getInstance().currentUser
 
-            val passwordDialog = buildPasswordDialog {
-                val reenteredPassword = it
+            val passwordDialog = buildPasswordDialog { reenteredPassword ->
                 if (Patterns.EMAIL_ADDRESS.matcher(newEmail).matches()) {
                     val credential = EmailAuthProvider.getCredential(user?.email!!, reenteredPassword)
                     user.reauthenticate(credential)?.addOnCompleteListener { reauthTask ->
                         if (reauthTask.isSuccessful) {
                             user.updateEmail(newEmail)?.addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
-                                    Toast.makeText(requireContext(), "E-posta adresi başarıyla güncellendi", Toast.LENGTH_SHORT).show()
+                                    // Authentication'da email güncellendi
+                                    val db = FirebaseFirestore.getInstance()
+                                    val userId = user.uid
+
+                                    // Firestore'da kullanıcı belgesini güncelle
+                                    db.collection("instructors").document(userId)
+                                        .update("email", newEmail)
+                                        .addOnSuccessListener {
+                                            Toast.makeText(requireContext(), "E-posta adresi başarıyla güncellendi", Toast.LENGTH_SHORT).show()
+                                        }
+                                        .addOnFailureListener { e ->
+                                            Toast.makeText(requireContext(), "Firestore güncellemesi başarısız: ${e.message}", Toast.LENGTH_SHORT).show()
+                                        }
                                 } else {
                                     Toast.makeText(requireContext(), task.exception?.message, Toast.LENGTH_SHORT).show()
                                 }
@@ -123,6 +135,7 @@ class instructorSettingsFragment : Fragment() {
 
             passwordDialog.show()
         }
+
 
         passwordButton.setOnClickListener {
             val newPassword = passwordEditText.text.toString()

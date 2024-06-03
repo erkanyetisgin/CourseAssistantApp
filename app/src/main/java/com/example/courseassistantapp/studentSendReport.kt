@@ -34,43 +34,47 @@ class studentSendReport : Fragment() {
         val subjectEditText = rootView.findViewById<EditText>(R.id.edit_subject)
         val bodyEditText = rootView.findViewById<EditText>(R.id.edit_body)
         val sendButton = rootView.findViewById<Button>(R.id.button_send)
-        var instructorId: String? = null
 
         setupSpinners(courseNameSpinner, recipientSpinner)
-
-        firestore.collection("instructors").get().addOnSuccessListener { querySnapshot: QuerySnapshot? ->
-            querySnapshot?.forEach { documentSnapshot ->
-                val instructorName = documentSnapshot.getString("firstName") + " " + documentSnapshot.getString("lastName")
-                if (instructorName == recipientSpinner.selectedItem.toString()) {
-                    instructorId = documentSnapshot.id
-                }
-            }
-        }
 
         sendButton.setOnClickListener {
             val scope = scopeEditText.text.toString()
             val courseName = courseNameSpinner.selectedItem.toString()
             val subject = subjectEditText.text.toString()
             val body = bodyEditText.text.toString()
+            val selectedInstructorName = recipientSpinner.selectedItem.toString()
 
-            val report = hashMapOf(
-                "scope" to scope,
-                "courseName" to courseName,
-                "instructor_id" to instructorId,
-                "subject" to subject,
-                "body" to body,
-                "student_id" to firebaseAuth.currentUser?.uid
-            )
+            firestore.collection("instructors").get().addOnSuccessListener { querySnapshot: QuerySnapshot? ->
+                var instructorId: String? = null
+                querySnapshot?.forEach { documentSnapshot ->
+                    val instructorName = documentSnapshot.getString("firstName") + " " + documentSnapshot.getString("lastName")
+                    if (instructorName == selectedInstructorName) {
+                        instructorId = documentSnapshot.id
+                    }
+                }
 
-            firestore.collection("reports").add(report)
-                .addOnSuccessListener { documentReference ->
-                    Toast.makeText(requireContext(), "Rapor başarıyla gönderildi", Toast.LENGTH_SHORT).show()
+                if (instructorId != null) {
+                    val report = hashMapOf(
+                        "scope" to scope,
+                        "courseName" to courseName,
+                        "instructor_id" to instructorId,
+                        "subject" to subject,
+                        "body" to body,
+                        "student_id" to firebaseAuth.currentUser?.uid
+                    )
+
+                    firestore.collection("reports").add(report)
+                        .addOnSuccessListener { documentReference ->
+                            Toast.makeText(requireContext(), "Rapor başarıyla gönderildi", Toast.LENGTH_SHORT).show()
+                        }
+                        .addOnFailureListener { e ->
+                            Toast.makeText(requireContext(), "Rapor gönderilirken bir hata oluştu", Toast.LENGTH_SHORT).show()
+                        }
+                } else {
+                    Toast.makeText(requireContext(), "Seçili öğretmen bulunamadı", Toast.LENGTH_SHORT).show()
                 }
-                .addOnFailureListener { e ->
-                    Toast.makeText(requireContext(), "Rapor gönderilirken bir hata oluştu", Toast.LENGTH_SHORT).show()
-                }
+            }
         }
-
 
         return rootView
     }

@@ -20,6 +20,8 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.io.ByteArrayOutputStream
 
@@ -95,19 +97,31 @@ class studentSettingsFragment : Fragment() {
 
 
         }
+
         emailButton.setOnClickListener {
             val newEmail = emailEditText.text.toString()
             val user = FirebaseAuth.getInstance().currentUser
 
-            val passwordDialog = buildPasswordDialog {
-                val reenteredPassword = it
+            val passwordDialog = buildPasswordDialog { reenteredPassword ->
                 if (Patterns.EMAIL_ADDRESS.matcher(newEmail).matches()) {
                     val credential = EmailAuthProvider.getCredential(user?.email!!, reenteredPassword)
                     user.reauthenticate(credential)?.addOnCompleteListener { reauthTask ->
                         if (reauthTask.isSuccessful) {
                             user.updateEmail(newEmail)?.addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
-                                    Toast.makeText(requireContext(), "E-posta adresi başarıyla güncellendi", Toast.LENGTH_SHORT).show()
+                                    // Authentication'da email güncellendi
+                                    val db = FirebaseFirestore.getInstance()
+                                    val userId = user.uid
+
+                                    // Firestore'da kullanıcı belgesini güncelle
+                                    db.collection("students").document(userId)
+                                        .update("email", newEmail)
+                                        .addOnSuccessListener {
+                                            Toast.makeText(requireContext(), "E-posta adresi başarıyla güncellendi", Toast.LENGTH_SHORT).show()
+                                        }
+                                        .addOnFailureListener { e ->
+                                            Toast.makeText(requireContext(), "Firestore güncellemesi başarısız: ${e.message}", Toast.LENGTH_SHORT).show()
+                                        }
                                 } else {
                                     Toast.makeText(requireContext(), task.exception?.message, Toast.LENGTH_SHORT).show()
                                 }
@@ -237,6 +251,18 @@ class studentSettingsFragment : Fragment() {
         }
     }
 
-
+    private fun updateEmailInDatabase(userId: String, newEmail: String) {
+        val databaseReference = FirebaseDatabase.getInstance().getReference("students").child(userId)
+        val updates = hashMapOf<String, Any>(
+            "email" to newEmail
+        )
+        databaseReference.updateChildren(updates).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Toast.makeText(requireContext(), "E-posta adresi veritabanında başarıyla güncellendi", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "E-posta adresi veritabanında güncellenirken bir hata oluştu: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 
 }
